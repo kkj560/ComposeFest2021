@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/BasicsCodelab2/.idea/caches
+/BasicsCodelab2/.idea/libraries
+/BasicsCodelab2/.idea/modules.xml
+/BasicsCodelab2/.idea/workspace.xml
+/BasicsCodelab2/.idea/navEditor.xml
+/BasicsCodelab2/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
