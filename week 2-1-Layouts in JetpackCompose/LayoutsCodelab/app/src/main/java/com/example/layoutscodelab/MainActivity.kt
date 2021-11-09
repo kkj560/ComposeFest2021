@@ -5,10 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -66,11 +63,11 @@ fun PhotographerCard() {
         ) {
             // Image goes here
         }
-        Column (
+        Column(
             modifier = Modifier
                 .padding(start = 8.dp)
                 .align(Alignment.CenterVertically)
-        ){
+        ) {
             Text("Alfred Sisley", fontWeight = FontWeight.Bold)
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 Text("3 minutes ago", style = MaterialTheme.typography.body2)
@@ -79,10 +76,31 @@ fun PhotographerCard() {
     }
 }
 
-@Preview( showBackground = false)
+@Preview(showBackground = false)
 @Composable
 fun PhotographerCardPreview() {
     LayoutsCodelabTheme {
         PhotographerCard()
+    }
+}
+
+@Preview()
+@Composable
+fun customButton() {
+    Button(onClick = {}) {
+        Text("Click")
+        Column(modifier = Modifier
+            .padding(start = 4.dp)){
+            Text("message")
+            Spacer(modifier = Modifier.height(4.dp))
+            Row {
+                Text("1")
+                Spacer(modifier = Modifier.width(4.dp))
+                Text("Button")
+                Spacer(modifier = Modifier.width(4.dp))
+                Text("Button")
+            }
+        }
+
     }
 }
