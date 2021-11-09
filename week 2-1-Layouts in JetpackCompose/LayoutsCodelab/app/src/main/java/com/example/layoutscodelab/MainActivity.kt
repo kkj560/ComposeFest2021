@@ -86,7 +86,7 @@ fun PhotographerCardPreview() {
 
 @Preview()
 @Composable
-fun customButton() {
+fun CustomButton() {
     Button(onClick = {}) {
         Text("Click")
         Column(modifier = Modifier
