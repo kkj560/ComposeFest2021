@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -24,25 +28,51 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LayoutsCodelabTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                LayoutsCodelab()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun LayoutsCodelab(title : String = "LayoutsCodelab") {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = title,
+                        //style = MaterialTheme.typography.h3
+                    )
+                },
+                actions = {
+                    IconButton(onClick = { /* doSomething() */ }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
+                    }
+                    IconButton(onClick = { /* doSomething() */ }) {
+                        Icon(Icons.Filled.FavoriteBorder, contentDescription = null)
+                    }
+                }
+            )},
+        floatingActionButton = { FloatingActionButton(onClick = {}) { Text("FAB") }}
+    ) { innerPadding ->
+        BodyContent(modifier = Modifier.padding(innerPadding).padding(16.dp))
+    }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun BodyContent(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.padding(8.dp)) {
+        Text(text = "Hi there!", modifier = Modifier.padding(8.dp))
+        Text(text = "Thanks for going through the Layouts codelab")
+    }
+}
+
+@Preview
+@Composable
+fun LayoutsCodelabPreview() {
     LayoutsCodelabTheme {
-        Greeting("Android")
+        LayoutsCodelab()
     }
 }
 
