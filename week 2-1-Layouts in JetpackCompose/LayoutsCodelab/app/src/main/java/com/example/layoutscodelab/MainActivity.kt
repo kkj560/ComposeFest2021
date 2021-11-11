@@ -28,6 +28,12 @@ import coil.compose.rememberImagePainter
 import com.example.layoutscodelab.ui.theme.LayoutsCodelabTheme
 import kotlinx.coroutines.launch
 
+val topics = listOf(
+    "Arts & Crafts", "Beauty", "Books", "Business", "Comics", "Culinary",
+    "Design", "Fashion", "Film", "History", "Maths", "Music", "People", "Philosophy",
+    "Religion", "Social sciences", "Technology", "TV", "Writing"
+)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,6 +168,13 @@ fun BodyContent(modifier: Modifier = Modifier) {
     Column(modifier = modifier.padding(8.dp)) {
         //Text(text = "Hi there!", modifier = Modifier.padding(8.dp))
         //Text(text = "Thanks for going through the Layouts codelab")
+        Row(modifier = modifier.horizontalScroll(rememberScrollState())) {
+            StaggeredGrid {
+                for (topic in topics) {
+                    Chip(modifier = Modifier.padding(8.dp), text = topic)
+                }
+            }
+        }
         Text("Hi there!", Modifier.firstBaselineToTop(32.dp), fontSize = 24.sp)
         MyOwnColumn(modifier.padding(8.dp)) {
             Text("MyOwnColumn")
