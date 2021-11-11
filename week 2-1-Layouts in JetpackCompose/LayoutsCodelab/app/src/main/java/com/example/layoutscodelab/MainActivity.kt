@@ -160,7 +160,17 @@ fun LayoutsCodelab(title : String = "LayoutsCodelab") {
             )},
         floatingActionButton = { FloatingActionButton(onClick = {}) { Text("FAB") }}
     ) { innerPadding ->
-        BodyContent(modifier = Modifier.padding(innerPadding))
+        //BodyContent(modifier = Modifier.padding(innerPadding))
+        ConstraintLayoutBodyContent(modifier = Modifier.padding(innerPadding))
+    }
+}
+
+@Composable
+fun ConstraintLayoutBodyContent(modifier: Modifier = Modifier){
+    Column{
+        ConstraintLayoutTwoButtonOneText()
+        LargeConstraintLayout()
+        DecoupledConstraintLayout()
     }
 }
 
