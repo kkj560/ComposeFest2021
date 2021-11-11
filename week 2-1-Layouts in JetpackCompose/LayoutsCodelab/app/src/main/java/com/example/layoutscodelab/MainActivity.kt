@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.layoutscodelab.ui.theme.LayoutsCodelabTheme
 import kotlinx.coroutines.launch
@@ -161,6 +162,13 @@ fun BodyContent(modifier: Modifier = Modifier) {
     Column(modifier = modifier.padding(8.dp)) {
         //Text(text = "Hi there!", modifier = Modifier.padding(8.dp))
         //Text(text = "Thanks for going through the Layouts codelab")
+        Text("Hi there!", Modifier.firstBaselineToTop(32.dp), fontSize = 24.sp)
+        MyOwnColumn(modifier.padding(8.dp)) {
+            Text("MyOwnColumn")
+            Text("places items")
+            Text("vertically.")
+            Text("We've done it by hand!")
+        }
         ScrollingList()
     }
 }
