@@ -108,31 +108,32 @@ fun TodoRow(todo: TodoItem, onItemClicked: (TodoItem) -> Unit, modifier: Modifie
     }
 }
 
-@Composable
-fun TodoInputTextField(modifier: Modifier) {
-    val (text, setText) = remember { mutableStateOf("") }
-    TodoInputText(text, setText, modifier)
-}
 
 @Composable
 fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
     // onItemComplete is an event will fire when an item is completed by the user
+    val (text, setText) = remember { mutableStateOf("") }
 
     Column {
         Row(Modifier
             .padding(horizontal = 16.dp)
             .padding(top = 16.dp)
         ) {
-            TodoInputTextField(Modifier
-                .weight(1f)
-                .padding(end = 8.dp)
+            TodoInputText(
+                text = text,
+                onTextChange = setText,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 8.dp)
             )
             TodoEditButton(
                 onClick = {
-
-                          /* todo */ },
+                    onItemComplete(TodoItem(text)) // send onItemComplete event up
+                    setText("")
+                },
                 text = "Add",
-                modifier = Modifier.align(Alignment.CenterVertically)
+                modifier = Modifier.align(Alignment.CenterVertically),
+                enabled = text.isNotBlank() // enable if text is not blank
             )
         }
     }
