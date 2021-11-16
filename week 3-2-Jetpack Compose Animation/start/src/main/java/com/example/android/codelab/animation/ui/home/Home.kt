@@ -390,6 +390,7 @@ private fun TopicRow(topic: String, expanded: Boolean, onClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
+                .animateContentSize()
         ) {
             Row {
                 Icon(
@@ -402,7 +403,7 @@ private fun TopicRow(topic: String, expanded: Boolean, onClick: () -> Unit) {
                     style = MaterialTheme.typography.body1
                 )
             }
-            if (expanded) {
+            if(expanded) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = stringResource(R.string.lorem_ipsum),
