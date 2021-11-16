@@ -142,10 +142,12 @@ fun FeaturedPost(
             val padding = Modifier.padding(horizontal = 16.dp)
             Text(
                 text = post.title,
+                style = MaterialTheme.typography.h6,
                 modifier = padding
             )
             Text(
                 text = post.metadata.author.name,
+                style = MaterialTheme.typography.body2,
                 modifier = padding
             )
             PostMetadata(post, padding)
@@ -161,14 +163,14 @@ private fun PostMetadata(
 ) {
     val divider = "  •  "
     val tagDivider = "  "
-    val tagStyle = MaterialTheme.typography.overline.toSpanStyle().copy(
-        background = MaterialTheme.colors.primary.copy(alpha = 0.1f)
-    )
     val text = buildAnnotatedString {
         append(post.metadata.date)
         append(divider)
         append(stringResource(R.string.read_time, post.metadata.readTimeMinutes))
         append(divider)
+        val tagStyle = MaterialTheme.typography.overline.toSpanStyle().copy(
+            background = MaterialTheme.colors.primary.copy(alpha = 0.1f)
+        )
         post.tags.forEachIndexed { index, tag ->
             if (index != 0) {
                 append(tagDivider)
@@ -181,6 +183,7 @@ private fun PostMetadata(
     CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
         Text(
             text = text,
+            style = MaterialTheme.typography.body2,
             modifier = modifier
         )
     }
@@ -216,8 +219,10 @@ fun PostItem(
 @Composable
 private fun PostItemPreview() {
     val post = remember { PostRepo.getFeaturedPost() }
-    Surface {
-        PostItem(post = post)
+    JetnewsTheme {
+        Surface {
+            PostItem(post = post)
+        }
     }
 }
 
