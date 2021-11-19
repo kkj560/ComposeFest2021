@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import com.example.compose.rally.ui.theme.RallyDialogThemeOverlay
 
 @Composable
@@ -56,7 +57,8 @@ fun RallyAlertDialog(
                         Text(buttonText)
                     }
                 }
-            }
+            },
+            properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
         )
     }
 }

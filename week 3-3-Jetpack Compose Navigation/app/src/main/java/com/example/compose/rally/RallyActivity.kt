@@ -17,6 +17,7 @@
 package com.example.compose.rally
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -66,7 +67,7 @@ fun RallyApp() {
         val currentScreen = RallyScreen.fromRoute(
             backstackEntry.value?.destination?.route
         )
-        val accountsName = RallyScreen.Accounts.name
+
         Scaffold(
             topBar = {
                 RallyTabRow(
@@ -101,17 +102,23 @@ fun RallyApp() {
                 composable(RallyScreen.Bills.name) {
                     BillsBody(bills = UserData.bills)
                 }
+                val accountsName = RallyScreen.Accounts.name
                 composable(
-                    "$accountsName/{name}",
+                    "$accountsName/{name}&{test}",
                     arguments = listOf(
                         navArgument("name") {
                             // Make argument type safe
+                            type = NavType.StringType
+                        },
+                        navArgument("test"){
                             type = NavType.StringType
                         }
                     )
                 ) { entry -> // Look up "name" in NavBackStackEntry's arguments
                     val accountName = entry.arguments?.getString("name")
                     // Find first name match in UserData
+                    val testValue = entry.arguments?.getString("test")
+                    Log.d("arg test", "testValue : $testValue")
                     val account = UserData.getAccount(accountName)
                     // Pass account to SingleAccountBody
                     SingleAccountBody(account = account)
@@ -124,7 +131,8 @@ fun RallyApp() {
 
 private fun navigateToSingleAccount(
     navController: NavHostController,
-    accountName: String
+    accountName: String,
+    test : String = "1234",
 ) {
-    navController.navigate("${RallyScreen.Accounts.name}/$accountName")
+    navController.navigate("${RallyScreen.Accounts.name}/$accountName&$test")
 }
